@@ -1,0 +1,292 @@
+{
+  "apiVersion": "1.0.0",
+  "swaggerVersion": "1.2",
+  "basePath": "https://api.samsungsami.io/v1.1",
+  "resourcePath": "../devices",
+  "produces": [
+    "application/json"
+  ],
+  "apis": [
+    {
+      "path": "/devices",
+      "operations": [
+        {
+          "method": "POST",
+          "summary": "Create a device",
+          "nickname": "addDevice",
+          "consumes": [
+            "application/json"
+          ],
+          "notes": "",
+          "type": "DeviceEnvelope",
+          "parameters": [
+            {
+              "name": "device",
+              "description": "Device to be added to the user",
+              "required": true,
+              "type": "Device",
+              "paramType": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/devices/{deviceId}",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Retrieves a device",
+          "nickname": "getDevice",
+          "notes": "",
+          "type": "DeviceEnvelope",
+          "parameters": [
+            {
+              "name": "deviceId",
+              "description": "deviceId",
+              "defaultValue": "",
+              "required": true,
+              "paramType": "path",
+              "allowMultiple": false,
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "method": "PUT",
+          "summary": "Updates a device",
+          "nickname": "updateDevice",
+          "consumes": [
+            "application/json"
+          ],
+          "notes": "",
+          "type": "DeviceEnvelope",
+          "parameters": [
+            {
+              "name": "deviceId",
+              "description": "deviceId",
+              "defaultValue": "",
+              "required": true,
+              "paramType": "path",
+              "allowMultiple": false,
+              "type": "string"
+            },
+            {
+              "name": "device",
+              "description": "Device to be updated",
+              "required": true,
+              "type": "Device",
+              "paramType": "body"
+            }
+          ]
+        },
+        {
+          "method": "DELETE",
+          "summary": "Deletes a device",
+          "nickname": "deleteDevice",
+          "notes": "",
+          "type": "DeviceEnvelope",
+          "parameters": [
+            {
+              "name": "deviceId",
+              "description": "deviceId",
+              "defaultValue": "",
+              "required": true,
+              "paramType": "path",
+              "allowMultiple": false,
+              "type": "string"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/devices/{deviceId}/tokens",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Retrieves a device's token",
+          "nickname": "getDeviceToken",
+          "notes": "",
+          "type": "DeviceTokenEnvelope",
+          "parameters": [
+            {
+              "name": "deviceId",
+              "description": "deviceId",
+              "defaultValue": "",
+              "required": true,
+              "paramType": "path",
+              "allowMultiple": false,
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "method": "PUT",
+          "summary": "Updates a device's token",
+          "nickname": "updateDeviceToken",
+          "consumes": [
+            "application/json"
+          ],
+          "notes": "",
+          "type": "DeviceTokenEnvelope",
+          "parameters": [
+            {
+              "name": "deviceId",
+              "description": "deviceId",
+              "defaultValue": "",
+              "required": true,
+              "paramType": "path",
+              "allowMultiple": false,
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "method": "DELETE",
+          "summary": "Deletes a device's token",
+          "nickname": "deleteDeviceToken",
+          "notes": "",
+          "type": "DeviceTokenEnvelope",
+          "parameters": [
+            {
+              "name": "deviceId",
+              "description": "deviceId",
+              "defaultValue": "",
+              "required": true,
+              "paramType": "path",
+              "allowMultiple": false,
+              "type": "string"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "models": {
+    "DevicesEnvelope": {
+      "id": "DevicesEnvelope",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "offset": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "DeviceArray"
+        }
+      },
+      "required": [
+        "total",
+        "count",
+        "offset"
+      ]
+    },
+    "DeviceArray": {
+      "id": "DeviceArray",
+      "properties": {
+        "devices": {
+          "type": "array",
+          "items": {
+            "$ref": "Device"
+          }
+        }
+      }
+    },
+    "DeviceProperties": {
+      "id": "DeviceProperties",
+      "properties": {
+        "credentials": {
+          "type": "Credentials"
+        }
+      }
+    },
+    "DeviceEnvelope": {
+      "id": "DeviceEnvelope",
+      "properties": {
+        "data": {
+          "type": "Device"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "Device": {
+      "id": "Device",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "string"
+        },
+        "dtid": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "manifestVersion": {
+          "type": "number"
+        },
+        "manifestVersionPolicy": {
+          "type": "string"
+        },
+        "needProviderAuth": {
+          "type": "boolean"
+        },
+        "properties": {
+          "type": "string"
+        },
+        "providerCredentials": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "dtid",
+        "name",
+        "manifestVersion",
+        "manifestVersionPolicy"
+      ]
+    },
+    "DeviceTokenEnvelope": {
+      "id": "DeviceTokenEnvelope",
+      "properties": {
+        "data": {
+          "type": "DeviceToken"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "DeviceToken": {
+      "id": "DeviceToken",
+      "properties": {
+        "accessToken": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "string"
+        },
+        "did": {
+          "type": "string"
+        },
+        "cid": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "accessToken",
+        "uid",
+        "did",
+        "cid"
+      ]
+    }
+  }
+}

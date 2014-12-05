@@ -1,0 +1,25 @@
+.container.theme-showcase(role='main')
+  .page-header
+      h1 Messages
+    .col-md-12
+      table.table.table-striped
+        thead
+          tr
+            th Message Id
+            th Time (PST)
+            th Device
+            th Device Type
+            th Data
+        tbody
+          tr(ng-repeat='message in messages')
+            td(ng-bind='message.mid')
+            td(ng-bind='message.ts | timestampToDate | fromNow')
+            td(ng-bind='findDevice(message.sdid).name')
+            td(ng-bind='findType(message.sdtid).name')
+            td
+              pre(ng-bind='message.data | stringify')
+      div(sami-loading='messages')
+
+    .btn-group
+      button.btn.btn-default(type='button') Prev
+      button.btn.btn-default(type='button') Next

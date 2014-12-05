@@ -1,0 +1,29 @@
+.container.theme-showcase(role="main")
+  form(role="form" ng-submit='create()' novalidate)
+    .form-group
+      label(for="deviceName") Device Name
+      input#deviceName.form-control(placeholder="Enter device name" name='name' ng-model='device.name')
+    .form-group
+      label(for="deviceType") Device Type
+      select.form-control(name='device_type' ng-model='device.dtid'
+        ng-init="device.dtid = deviceTypes[0].id"
+        ng-options="type.id as type.name for type in deviceTypes")
+      p.help-block Device types available.
+    .form-group
+      label(for="optionManifest") Manifest
+      .radio
+        label
+          input#latestManifest(name="option_manifest"
+            type="radio"
+            value="LATEST"
+            ng-init="device.manifestVersionPolicy = 'LATEST'"
+            ng-model='device.manifestVersionPolicy')
+          The Latest Manifest available
+      .radio
+        label
+          input#deviceManifest(name="option_manifest"
+            type="radio"
+            value="DEVICE"
+            ng-model='device.manifestVersionPolicy')
+          The Default Manifest for the device
+    button.btn.btn-default(type="submit") Submit

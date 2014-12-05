@@ -1,0 +1,267 @@
+{
+  "apiVersion": "1.0.0",
+  "swaggerVersion": "1.2",
+  "basePath": "https://api.samsungsami.io/v1.1",
+  "resourcePath": "../devicetypes",
+  "produces": [
+    "application/json"
+  ],
+  "apis": [
+    {
+      "path": "/devicetypes",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Retrieves Device Types",
+          "nickname": "getDeviceTypes",
+          "notes": "",
+          "parameters": [
+            {
+              "name": "name",
+              "description": "Device Type Name",
+              "defaultValue": "",
+              "required": true,
+              "paramType": "path",
+              "allowMultiple": false,
+              "type": "string"
+            },
+            {
+              "name": "offset",
+              "description": "Offset for pagination.",
+              "defaultValue": "0",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "integer"
+            },
+            {
+              "name": "count",
+              "description": "Desired count of items in the result set.",
+              "defaultValue": "100",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "integer"
+            }
+          ],
+          "type": "DeviceTypesEnvelope"
+        }
+      ]
+    },
+    {
+      "path": "/devicetypes/{deviceTypeId}",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Retrieves a Device Type",
+          "nickname": "getDeviceType",
+          "notes": "",
+          "type": "DeviceTypeEnvelope",
+          "parameters": [
+            {
+              "name": "deviceTypeId",
+              "description": "deviceTypeId",
+              "defaultValue": "",
+              "required": true,
+              "paramType": "path",
+              "allowMultiple": false,
+              "type": "string"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/devicetypes/{deviceTypeId}/manifests/latest/properties",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Get a Device Type's manifest properties for the latest version.",
+          "nickname": "getLatestManifestProperties",
+          "notes": "",
+          "type": "ManifestPropertiesEnvelope",
+          "parameters": [
+            {
+              "name": "deviceTypeId",
+              "description": "Device Type ID",
+              "defaultValue": "",
+              "required": true,
+              "paramType": "path",
+              "allowMultiple": false,
+              "type": "string"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/devicetypes/{deviceTypeId}/manifests/{version}/properties",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Get a Device Type's manifest properties for a specific version.",
+          "nickname": "getManifestProperties",
+          "notes": "",
+          "type": "ManifestPropertiesEnvelope",
+          "parameters": [
+            {
+              "name": "deviceTypeId",
+              "description": "Device Type ID",
+              "defaultValue": "",
+              "required": true,
+              "paramType": "path",
+              "allowMultiple": false,
+              "type": "string"
+            },
+            {
+              "name": "version",
+              "description": "Version",
+              "defaultValue": "",
+              "required": true,
+              "paramType": "path",
+              "allowMultiple": false,
+              "type": "integer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/devicetypes/{deviceTypeId}/availablemanifestversions",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Get a Device Type's available manifest versions",
+          "nickname": "getAvailableManifestVersions",
+          "notes": "",
+          "type": "ManifestVersionsEnvelope",
+          "parameters": [
+            {
+              "name": "deviceTypeId",
+              "description": "Device Type ID",
+              "defaultValue": "",
+              "required": true,
+              "paramType": "path",
+              "allowMultiple": false,
+              "type": "string"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "models": {
+    "ManifestVersionsEnvelope": {
+      "id": "ManifestVersionsEnvelope",
+      "properties": {
+        "data": {
+          "type": "VersionsArray"
+        }
+      }
+    },
+    "VersionsArray": {
+      "id": "VersionsArray",
+      "properties": {
+        "versions": {
+          "type": "array",
+          "items": {
+            "$ref": "integer"
+          }
+        }
+      }
+    },
+    "ManifestPropertiesEnvelope": {
+      "id": "ManifestPropertiesEnvelope",
+      "properties": {
+        "data": {
+          "type": "ManifestProperties"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "ManifestProperties": {
+      "id": "ManifestProperties",
+      "properties": {
+        "properties": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "properties"
+      ]
+    },
+    "DeviceTypesEnvelope": {
+      "id": "DeviceTypesEnvelope",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "offset": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "DeviceTypeArray"
+        }
+      },
+      "required": [
+        "total",
+        "count",
+        "offset"
+      ]
+    },
+    "DeviceTypeArray": {
+      "id": "DeviceTypeArray",
+      "properties": {
+        "deviceTypes": {
+          "type": "array",
+          "items": {
+            "$ref": "DeviceType"
+          }
+        }
+      }
+    },
+    "DeviceTypeEnvelope": {
+      "id": "DeviceTypeEnvelope",
+      "properties": {
+        "data": {
+          "type": "DeviceType"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "DeviceType": {
+      "id": "DeviceType",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "published": {
+          "type": "boolean"
+        },
+        "latestVersion": {
+          "type": "number"
+        },
+        "uniqueName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "uniqueName"
+      ]
+    }
+  }
+}

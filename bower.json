@@ -1,0 +1,29 @@
+{
+  "name": "Sami-sample",
+  "main": "index.js",
+  "version": "0.0.1",
+  "authors": [
+    "Daniel Gaytan <dgaytan6@gmail.com>"
+  ],
+  "moduleType": [
+    "amd",
+    "node"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "assets/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "latest",
+    "angular": "latest",
+    "angular-route": "latest",
+    "underscore": "latest",
+    "moment": "latest"
+  }
+}

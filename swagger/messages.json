@@ -1,0 +1,719 @@
+{
+  "apiVersion": "1.0.0",
+  "swaggerVersion": "1.2",
+  "basePath": "https://api.samsungsami.io/v1.1",
+  "resourcePath": "../messages",
+  "produces": [
+    "application/json"
+  ],
+  "apis": [
+    {
+      "path": "/messages",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Get the messages normalized",
+          "nickname": "getNormalizedMessages",
+          "notes": "",
+          "parameters": [
+            {
+              "name": "uid",
+              "description": "User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to.",
+              "defaultValue": "",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "string"
+            },
+            {
+              "name": "sdid",
+              "description": "Source device ID of the messages being searched.",
+              "defaultValue": "",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "string"
+            },
+            {
+              "name": "mid",
+              "description": "The SAMI message ID being searched.",
+              "defaultValue": "",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "string"
+            },
+            {
+              "name": "fieldPresence",
+              "description": "String representing a field from the specified device ID.",
+              "defaultValue": "",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "string"
+            },
+            {
+              "name": "offset",
+              "description": "A string that represents the starting item, should be the value of 'next' field received in the last response. (required for pagination)",
+              "defaultValue": "",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "string"
+            },
+            {
+              "name": "count",
+              "description": "count",
+              "defaultValue": "1000",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "integer"
+            },
+            {
+              "name": "startDate",
+              "description": "startDate",
+              "defaultValue": "0",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "long"
+            },
+            {
+              "name": "endDate",
+              "description": "endDate",
+              "defaultValue": "0",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "long"
+            },
+            {
+              "name": "order",
+              "description": "Desired sort order: 'asc' or 'desc'",
+              "defaultValue": "asc",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          ],
+          "type": "NormalizedMessagesEnvelope"
+        },
+        {
+          "method": "POST",
+          "summary": "POST a message",
+          "nickname": "postMessage",
+          "notes": "",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "message",
+              "description": "Message",
+              "required": true,
+              "paramType": "body",
+              "allowMultiple": false,
+              "type": "Message"
+            }
+          ],
+          "type": "MessageIDEnvelope"
+        }
+      ]
+    },
+    {
+      "path": "/messages/last",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Get the last few Normalized messages",
+          "nickname": "getNormalizedMessagesLast",
+          "notes": "",
+          "parameters": [
+            {
+              "name": "sdids",
+              "description": "Comma separated list of source device IDs (minimum: 1).",
+              "defaultValue": "",
+              "required": true,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "string"
+            },
+            {
+              "name": "fieldPresence",
+              "description": "String representing a field from the specified device ID.",
+              "defaultValue": "",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "string"
+            },
+            {
+              "name": "count",
+              "description": "count",
+              "defaultValue": "100",
+              "required": true,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "integer"
+            }
+          ],
+          "type": "NormalizedMessagesEnvelope"
+        }
+      ]
+    },
+    {
+      "path": "/messages/analytics/aggregates",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Get aggregates on normalized messages on a field",
+          "nickname": "getNormalizedMessagesAggregates",
+          "notes": "",
+          "parameters": [
+            {
+              "name": "sdid",
+              "description": "String representing the device ID. If this is not the sdid of a device belonging to the current authenticated user, then it must be the sdid of a device belonging to a user whom the current authenticated user has read access to.",
+              "defaultValue": "",
+              "required": true,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "string"
+            },
+            {
+              "name": "field",
+              "description": "String representing a field from the specified device ID.",
+              "defaultValue": "",
+              "required": true,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "string"
+            },
+            {
+              "name": "startDate",
+              "description": "startDate",
+              "defaultValue": "0",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "long"
+            },
+            {
+              "name": "endDate",
+              "description": "endDate",
+              "defaultValue": "0",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "long"
+            }
+          ],
+          "type": "AggregatesEnvelope"
+        }
+      ]
+    },
+    {
+      "path": "/messages/presence",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Get the presence of a field",
+          "nickname": "getNormalizedMessagesPresence",
+          "notes": "",
+          "parameters": [
+            {
+              "name": "sdid",
+              "description": "String representing the device ID. If this is not the sdid of a device belonging to the current authenticated user, then it must be the sdid of a device belonging to a user whom the current authenticated user has read access to.",
+              "defaultValue": "",
+              "required": true,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "string"
+            },
+            {
+              "name": "fieldPresence",
+              "description": "String representing a field from the specified device ID.",
+              "defaultValue": "",
+              "required": true,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "string"
+            },
+            {
+              "name": "interval",
+              "description": "String representing grouping interval. One of: 'minute' (1 hour limit), 'hour' (1 day limit), 'day' (31 days limit), 'month' (1 year limit), or 'year' (10 years limit).",
+              "defaultValue": "",
+              "required": true,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "string",
+              "enum": [
+                "minute",
+                "hour",
+                "day",
+                "month",
+                "year"
+              ]
+            },
+            {
+              "name": "startDate",
+              "description": "startDate",
+              "defaultValue": "0",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "long"
+            },
+            {
+              "name": "endDate",
+              "description": "endDate",
+              "defaultValue": "0",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "long"
+            }
+          ],
+          "type": "FieldPresenceEnvelope"
+        }
+      ]
+    },
+    {
+      "path": "/messages/raw",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Get raw messages",
+          "nickname": "getRawMessages",
+          "notes": "",
+          "parameters": [
+            {
+              "name": "sdid",
+              "description": "Source device ID of the messages being searched.",
+              "defaultValue": "",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "string"
+            },
+            {
+              "name": "offset",
+              "description": "A string that represents the starting item, should be the value of 'next' field received in the last response. (required for pagination)",
+              "defaultValue": "",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "string"
+            },
+            {
+              "name": "count",
+              "description": "count",
+              "defaultValue": "1000",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "integer"
+            },
+            {
+              "name": "startDate",
+              "description": "startDate",
+              "defaultValue": "0",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "long"
+            },
+            {
+              "name": "endDate",
+              "description": "endDate",
+              "defaultValue": "0",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "long"
+            },
+            {
+              "name": "order",
+              "description": "Desired sort order: 'asc' or 'desc'",
+              "defaultValue": "asc",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          ],
+          "type": "RawMessagesEnvelope"
+        }
+      ]
+    }
+  ],
+  "models": {
+    "Message": {
+      "id": "Message",
+      "properties": {
+        "sdid": {
+          "type": "string"
+        },
+        "ddid": {
+          "type": "string"
+        },
+        "ts": {
+          "type": "number"
+        },
+        "data": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "sdid",
+        "data"
+      ]
+    },
+    "MessageIDEnvelope": {
+      "id": "MessageIDEnvelope",
+      "properties": {
+        "data": {
+          "type": "MessageID"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "MessageID": {
+      "id": "MessageID",
+      "properties": {
+        "mid": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "mid"
+      ]
+    },
+    "RawMessage": {
+      "id": "RawMessage",
+      "properties": {
+        "cts": {
+          "type": "number"
+        },
+        "ts": {
+          "type": "number"
+        },
+        "mid": {
+          "type": "string"
+        },
+        "sdid": {
+          "type": "string"
+        },
+        "data": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "sdid",
+        "mid",
+        "email",
+        "cts",
+        "ts",
+        "data"
+      ]
+    },
+    "RawMessagesEnvelope": {
+      "id": "RawMessagesEnvelope",
+      "properties": {
+        "sdid": {
+          "type": "string"
+        },
+        "mid": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "number"
+        },
+        "endDate": {
+          "type": "number"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "order": {
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ]
+        },
+        "size": {
+          "type": "number"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "RawMessage"
+          }
+        }
+      },
+      "required": [
+        "startDate",
+        "endDate",
+        "count",
+        "order",
+        "size",
+        "data"
+      ]
+    },
+    "NormalizedMessage": {
+      "id": "NormalizedMessage",
+      "properties": {
+        "cts": {
+          "type": "number"
+        },
+        "ts": {
+          "type": "number"
+        },
+        "mid": {
+          "type": "string"
+        },
+        "sdid": {
+          "type": "string"
+        },
+        "stdid": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "string"
+        },
+        "mv": {
+          "type": "number"
+        },
+        "data": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "sdid",
+        "mid",
+        "email",
+        "cts",
+        "ts",
+        "uid",
+        "mv",
+        "data"
+      ]
+    },
+    "NormalizedMessagesEnvelope": {
+      "id": "NormalizedMessagesEnvelope",
+      "properties": {
+        "sdids": {
+          "type": "string"
+        },
+        "sdid": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "number"
+        },
+        "endDate": {
+          "type": "number"
+        },
+        "order": {
+          "type": "string"
+        },
+        "next": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "size": {
+          "type": "number"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "NormalizedMessage"
+          }
+        }
+      },
+      "required": [
+        "count",
+        "size",
+        "data"
+      ]
+    },
+    "Aggregates": {
+      "id": "Aggregates",
+      "properties": {
+        "count": {
+          "type": "number"
+        },
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        },
+        "mean": {
+          "type": "number"
+        },
+        "sum": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "count",
+        "min",
+        "max",
+        "mean",
+        "sum"
+      ]
+    },
+    "AggregatesEnvelope": {
+      "id": "AggregatesEnvelope",
+      "properties": {
+        "sdid": {
+          "type": "string"
+        },
+        "field": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "number"
+        },
+        "endDate": {
+          "type": "number"
+        },
+        "interval": {
+          "type": "string"
+        },
+        "size": {
+          "type": "number"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "Aggregates"
+          }
+        }
+      },
+      "required": [
+        "startDate",
+        "endDate",
+        "sdid",
+        "field",
+        "size",
+        "data"
+      ]
+    },
+    "FieldPresence": {
+      "id": "FieldPresence",
+      "properties": {
+        "startDate": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "startDate"
+      ]
+    },
+    "FieldPresenceEnvelope": {
+      "id": "FieldPresenceEnvelope",
+      "properties": {
+        "sdid": {
+          "type": "string"
+        },
+        "fieldPresence": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "number"
+        },
+        "endDate": {
+          "type": "number"
+        },
+        "interval": {
+          "type": "string"
+        },
+        "size": {
+          "type": "number"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "FieldPresence"
+          }
+        }
+      },
+      "required": [
+        "startDate",
+        "endDate",
+        "sdid",
+        "fieldPresence",
+        "interval",
+        "size",
+        "data"
+      ]
+    },
+    "ExportEnvelope": {
+      "id": "ExportEnvelope",
+      "properties": {
+        "exportId": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "string"
+        },
+        "sdid": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "endDate": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "order": {
+          "type": "string"
+        },
+        "format": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "exportId",
+        "startDate",
+        "endDate",
+        "sdid",
+        "size",
+        "order",
+        "format"
+      ]
+    },
+    "ExportStatusEnvelope": {
+      "id": "ExportStatusEnvelope",
+      "properties": {
+        "exportId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

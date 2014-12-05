@@ -1,0 +1,8 @@
+.container.theme-showcase(role="main")
+  .jumbotron
+    h1 Welcome to SAMI!
+    p SAMI is a data broker that enables devices to upload information to the cloud. Developers can access the data and leverage it to create entirely new applications, like this Sample App.
+    p
+      a.btn.btn-primary.btn-lg(role="button" ng-click='login()').
+        Log In &raquo;
+    p(ng-bind='error')

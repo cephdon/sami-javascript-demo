@@ -1,0 +1,53 @@
+doctype html
+html(lang='en' ng-app='SAMIApp')
+  head
+    meta(charset="utf-8")
+    meta(content="IE=edge" http-equiv="X-UA-Compatible")
+    meta(content="width=device-width, initial-scale=1" name="viewport")
+    meta(content="" name="description")
+    meta(content="" name="author")
+    meta(content="#{ clientId }" name='clientId')
+    - if(!_.isUndefined(accessToken)){
+      meta(content="#{ accessToken }" name='accessToken')
+    - }
+    title SAMI - Home
+    link(href="/assets/stylesheets/sami.css" rel="stylesheet")
+    link(href="/assets/stylesheets/spinner.css" rel="stylesheet")
+    link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet")
+    link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" rel="stylesheet")
+  body(role="document")
+    .navbar.navbar-inverse.navbar-fixed-top(role="navigation" ng-controller='MenuController')
+      .container
+        .navbar-header
+          button.navbar-toggle.collapsed(data-target=".navbar-collapse" data-toggle="collapse" type="button")
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand( href='/#/') SAMI Sample
+        .navbar-collapse.collapse
+          ul.nav.navbar-nav
+            li(ng-class="{active: isActive('/')}" ng-hide='isAuthenticated()')
+              a(href='/#/') Home
+            li(ng-class="{active: isActive(['/devices', '/devices/new'])}" ng-show='isAuthenticated()')
+              a(href='/#/devices') Devices
+            li(ng-class="{active: isActive('/messages')}" ng-show='isAuthenticated()')
+              a(href='/#/messages') Messages
+          ul.nav.navbar-nav.navbar-right(ng-show='isAuthenticated()')
+            li
+              a(href='/#/' ng-click='logout()') Logout
+    div(ng-view)
+    .footer
+      .container
+        p.text-muted SAMI Demo Application.
+    script(src="/assets/vendor/jquery/dist/jquery.js")
+    script(src="/assets/vendor/underscore/underscore.js")
+    script(src="/assets/vendor/moment/moment.js")
+    script(src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js")
+    script(src="/assets/vendor/angular/angular.min.js")
+    script(src="/assets/vendor/angular-route/angular-route.min.js")
+    script(src="/assets/javascripts/OAuth2.js")
+    script(src="/assets/javascripts/stringify.js")
+    script(src="/assets/javascripts/moment.js")
+    script(src="/assets/javascripts/api.js")
+    script(src="/assets/javascripts/SAMIApp.js")

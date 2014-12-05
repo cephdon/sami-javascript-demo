@@ -1,0 +1,470 @@
+{
+  "apiVersion": "1.0.0",
+  "swaggerVersion": "1.2",
+  "basePath": "https://api.samsungsami.io/v1.1",
+  "resourcePath": "../users",
+  "produces": [
+    "application/json"
+  ],
+  "apis": [
+    {
+      "path": "/users/self",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Get's the current user's profile",
+          "nickname": "self",
+          "notes": "",
+          "parameters": [],
+          "type": "UserEnvelope"
+        }
+      ]
+    },
+    {
+      "path": "/users/{userId}/properties",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Get application properties of a user",
+          "nickname": "getUserProperties",
+          "notes": "",
+          "type": "PropertiesEnvelope",
+          "parameters": [
+            {
+              "name": "userId",
+              "description": "User Id",
+              "defaultValue": "",
+              "required": true,
+              "paramType": "path",
+              "allowMultiple": false,
+              "type": "string"
+            },
+            {
+              "name": "aid",
+              "description": "Application ID",
+              "defaultValue": "",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "method": "POST",
+          "summary": "Add application properties for a user",
+          "nickname": "addUserProperties",
+          "consumes": [
+            "application/json"
+          ],
+          "notes": "",
+          "type": "PropertiesEnvelope",
+          "parameters": [
+            {
+              "name": "userId",
+              "description": "userId",
+              "defaultValue": "",
+              "required": true,
+              "paramType": "path",
+              "allowMultiple": false,
+              "type": "string"
+            },
+            {
+              "name": "aid",
+              "description": "Application ID",
+              "defaultValue": "",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "string"
+            },
+            {
+              "name": "properties",
+              "description": "Properties to be updated",
+              "required": true,
+              "type": "AppProperties",
+              "paramType": "body"
+            }
+          ]
+        },
+        {
+          "method": "PUT",
+          "summary": "Updates application properties of a user",
+          "nickname": "updateUserProperties",
+          "consumes": [
+            "application/json"
+          ],
+          "notes": "",
+          "type": "PropertiesEnvelope",
+          "parameters": [
+            {
+              "name": "userId",
+              "description": "userId",
+              "defaultValue": "",
+              "required": true,
+              "paramType": "path",
+              "allowMultiple": false,
+              "type": "string"
+            },
+            {
+              "name": "aid",
+              "description": "Application ID",
+              "defaultValue": "",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "string"
+            },
+            {
+              "name": "properties",
+              "description": "Properties to be updated",
+              "required": true,
+              "type": "AppProperties",
+              "paramType": "body"
+            }
+          ]
+        },
+        {
+          "method": "DELETE",
+          "summary": "Deletes a users properties",
+          "nickname": "deleteUserProperties",
+          "notes": "",
+          "type": "PropertiesEnvelope",
+          "parameters": [
+            {
+              "name": "userId",
+              "description": "userId",
+              "defaultValue": "",
+              "required": true,
+              "paramType": "path",
+              "allowMultiple": false,
+              "type": "string"
+            },
+            {
+              "name": "aid",
+              "description": "Application ID",
+              "defaultValue": "",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "string"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "path": "/users/{userId}/devices",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Retrieve User's Devices",
+          "nickname": "getUserDevices",
+          "notes": "",
+          "parameters": [
+            {
+              "name": "offset",
+              "description": "Offset for pagination.",
+              "defaultValue": "0",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "integer"
+            },
+            {
+              "name": "count",
+              "description": "Desired count of items in the result set",
+              "defaultValue": "100",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "integer"
+            },
+            {
+              "name": "includeProperties",
+              "description": "Optional. Boolean (true/false) - If false, only return the user's device types. If true, also return device types shared by other users.",
+              "defaultValue": "",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "boolean"
+            },
+            {
+              "name": "userId",
+              "description": "User ID",
+              "defaultValue": "",
+              "required": true,
+              "paramType": "path",
+              "allowMultiple": false,
+              "type": "string"
+            }
+          ],
+          "type": "DevicesEnvelope"
+        }
+      ]
+    },
+    {
+      "path": "/users/{userId}/devicetypes",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Retrieve User's Device Types",
+          "nickname": "getUserDeviceTypes",
+          "notes": "",
+          "parameters": [
+            {
+              "name": "offset",
+              "description": "Offset for pagination.",
+              "defaultValue": "0",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "integer"
+            },
+            {
+              "name": "count",
+              "description": "Desired count of items in the result set.",
+              "defaultValue": "100",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "integer"
+            },
+            {
+              "name": "includeShared",
+              "description": "Optional. Boolean (true/false) - If false, only return the user's device types. If true, also return device types shared by other users.",
+              "defaultValue": "false",
+              "required": false,
+              "paramType": "query",
+              "allowMultiple": false,
+              "type": "boolean"
+            },
+            {
+              "name": "userId",
+              "description": "User ID.",
+              "defaultValue": "",
+              "required": true,
+              "paramType": "path",
+              "allowMultiple": false,
+              "type": "string"
+            }
+          ],
+          "type": "DeviceTypesEnvelope"
+        }
+      ]
+    }
+  ],
+  "models": {
+    "User": {
+      "id": "User",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "fullName": {
+          "type": "string"
+        },
+        "saIdentity": {
+          "type": "string"
+        },
+        "createdOn": {
+          "type": "number"
+        },
+        "modifiedOn": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "email",
+        "fullName",
+        "saIdentity",
+        "createdOn",
+        "modifiedOn"
+      ]
+    },
+    "UserEnvelope": {
+      "id": "UserEnvelope",
+      "properties": {
+        "data": {
+          "type": "User"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "PropertiesEnvelope": {
+      "id": "PropertiesEnvelope",
+      "properties": {
+        "data": {
+          "type": "AppProperties"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "AppProperties": {
+      "id": "AppProperties",
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "aid": {
+          "type": "string"
+        },
+        "properties": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "properties"
+      ]
+    },
+    "DevicesEnvelope": {
+      "id": "DevicesEnvelope",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "offset": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "DeviceArray"
+        }
+      },
+      "required": [
+        "total",
+        "count",
+        "offset"
+      ]
+    },
+    "DeviceArray": {
+      "id": "DeviceArray",
+      "properties": {
+        "devices": {
+          "type": "array",
+          "items": {
+            "$ref": "Device"
+          }
+        }
+      }
+    },
+    "Device": {
+      "id": "Device",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "string"
+        },
+        "dtid": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "manifestVersion": {
+          "type": "number"
+        },
+        "manifestVersionPolicy": {
+          "type": "string"
+        },
+        "properties": {
+          "type": "DeviceProperties"
+        }
+      },
+      "required": [
+        "dtid",
+        "name",
+        "manifestVersion",
+        "manifestVersionPolicy"
+      ]
+    },
+    "DeviceTypesEnvelope": {
+      "id": "DeviceTypesEnvelope",
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "offset": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "DeviceTypeArray"
+        }
+      },
+      "required": [
+        "total",
+        "count",
+        "offset"
+      ]
+    },
+    "DeviceTypeArray": {
+      "id": "DeviceTypeArray",
+      "properties": {
+        "deviceTypes": {
+          "type": "array",
+          "items": {
+            "$ref": "DeviceType"
+          }
+        }
+      }
+    },
+    "DeviceTypeEnvelope": {
+      "id": "DeviceTypeEnvelope",
+      "properties": {
+        "data": {
+          "type": "DeviceType"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "DeviceType": {
+      "id": "DeviceType",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "published": {
+          "type": "boolean"
+        },
+        "latestVersion": {
+          "type": "number"
+        },
+        "uniqueName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "uniqueName"
+      ]
+    }
+  }
+}
