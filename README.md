@@ -1,4 +1,6 @@
-# SAMI Sample Javascript App
+# SAMI Sample JavaScript App
+
+This sample JavaScript app was created to showcase how to manage SAMI's authentication (based on OAuth2), send and receive messages with SAMI's REST APIs and other functionalities.
 
 ## Installation
 
