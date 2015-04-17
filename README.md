@@ -1,23 +1,23 @@
-# Sample Javascript App for SAMI
+# SAMI Sample Javascript App
 
 ## Installation
 
-1. Create an application with a redirection url pointing to the the following path:
-
-        /auth/samihub/callback
-
-2. Do the following:
+1. Create an Application in devportal.samsungsami.io:
+  * The Redirect URI is set to 'http://localhost:3000/auth/samihub/callback'.
+  * Choose "Client credentials, auth code, Implicit" for OAuth 2.0 flow.
+  * Under "PERMISSIONS", check "Read" for "Profile". 
+  * Click the "Add Device Type" button. Pick a few device types to set the proper permissions per the following guideline. If you just want to see data of a device on the sample app, check "Read" permission for the corresponding device type. If you want the ability to delete a device shown on the sample app, check "Read" and "Write" permissions for the corresponding device type.
+  * Save your application. Make a note of your client ID, which will be used in the next step.
+2. Do the following at the root directory of this sample app:
 
     ```sh
-    git clone git@bitbucket.org:samihub/sami.git
-    cd sami/salamis/clients/samples/javascript
     npm install bower -g
     npm install .
     bower install
-    SAMI_CLIENT_ID=<client-id> node index.js
+    SAMI_CLIENT_ID=<YOUR CLIENT APP ID> node index.js
     ```
 3. Go to http://localhost:3000/
-4. Enjoy.
+4. Start to play with the app.
 
 ## SAMI SDK
 
@@ -121,3 +121,19 @@ lib/swaggerApi.js#L32-41
       }
     });
 ```
+
+## More about SAMI
+
+If you are not familiar with SAMI we have extensive documentation at http://developer.samsungsami.io
+
+The full SAMI API specification with examples can be found at http://developer.samsungsami.io/sami/api-spec.html
+
+We blog about advanced sample applications at http://blog.samsungsami.io/
+
+To create and manage your services and devices on SAMI visit developer portal at http://devportal.samsungsami.io
+
+## Licence and Copyright
+
+Licensed under the Apache License. See LICENCE.
+
+Copyright (c) 2015 Samsung Electronics Co., Ltd.

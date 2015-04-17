@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Daniel Gaytan",
+  "author": "Samsung Electronics Co., Ltd.",
   "license": "ISC",
   "dependencies": {
     "hapi": "^7.1.0",
