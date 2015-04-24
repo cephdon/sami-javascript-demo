@@ -5,10 +5,6 @@ This sample JavaScript app was created to showcase how to manage SAMI's authenti
 ##  Prerequisites
 
  * [Node.js](https://nodejs.org/) 
- * [npm](https://www.npmjs.com/)
- * [bower](http://bower.io/)
-
-You should get Node.js first. Then follow the Installation steps below to install other tools.
 
 ## Installation
 
